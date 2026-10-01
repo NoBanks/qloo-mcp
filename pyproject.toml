@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qloo-mcp"
+version = "0.1.0"
+description = "MCP server for Qloo Taste AI. Entity and tag lookup, taste-based recommendations, audience demographics and taste analysis as agent tools, plus Taste Match: an agent that finds who would love an independent artist's art or music."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Ryan Hammer (NoBanks)", email = "nobanksnearby@gmail.com" }]
+requires-python = ">=3.11"
+keywords = ["mcp", "model-context-protocol", "qloo", "taste-ai", "recommendations", "cultural-intelligence", "ai-agents", "independent-artists"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = ["mcp>=1.0.0", "httpx>=0.27.0", "pydantic>=2.0.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0", "pytest-asyncio>=0.21.0", "respx>=0.20.0"]
+demo = ["uvicorn>=0.27.0", "starlette>=0.36.0"]
+
+[project.scripts]
+qloo-mcp = "qloo_mcp.server:main_sync"
+
+[project.urls]
+Homepage = "https://qloo.com/"
+Documentation = "https://docs.qloo.com/reference/api-overview"
+Repository = "https://github.com/NoBanks/qloo-mcp"
+
+[tool.hatch.build.targets.wheel]
+packages = ["qloo_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

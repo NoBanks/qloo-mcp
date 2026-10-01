@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taste Match</title>
+<style>
+  :root { --bg:#0e0f13; --panel:#171922; --ink:#eceef4; --mute:#9aa0b4; --line:#272a36; --accent:#f2b84b; --accent2:#7cc4ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; padding:0 16px 64px; }
+  main { max-width:960px; margin:0 auto; }
+  header { padding:40px 0 16px; }
+  h1 { font-size:2.2rem; margin:0; letter-spacing:-0.02em; }
+  h1 span { color:var(--accent); }
+  .sub { color:var(--mute); margin:6px 0 0; max-width:640px; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; margin-top:20px; }
+  label { display:block; font-size:.85rem; color:var(--mute); margin:12px 0 4px; }
+  input, textarea, select { width:100%; background:#0f1118; color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; }
+  textarea { min-height:96px; resize:vertical; }
+  .row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .chip { background:#22263a; border:1px solid var(--line); color:var(--ink); border-radius:999px; padding:6px 12px; cursor:pointer; font-size:.9rem; }
+  .chip:hover { border-color:var(--accent); }
+  button.go { margin-top:16px; background:var(--accent); color:#1a1305; border:0; border-radius:10px; padding:12px 20px; font-weight:700; font-size:1rem; cursor:pointer; }
+  button.go[disabled] { opacity:.5; cursor:wait; }
+  .pitch { font-size:1.15rem; line-height:1.7; border-left:4px solid var(--accent); padding-left:16px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  h3 { margin:0 0 8px; font-size:.95rem; text-transform:uppercase; letter-spacing:.08em; color:var(--accent2); }
+  ol { margin:0; padding-left:20px; }
+  li { margin:4px 0; }
+  .aff { color:var(--mute); font-size:.85rem; }
+  .bar { height:8px; background:#22263a; border-radius:4px; overflow:hidden; }
+  .bar i { display:block; height:100%; background:var(--accent2); }
+  .agerow { display:grid; grid-template-columns:110px 1fr 56px; gap:8px; align-items:center; font-size:.9rem; margin:4px 0; }
+  .tags span { display:inline-block; background:#22263a; border-radius:999px; padding:3px 10px; margin:3px; font-size:.85rem; }
+  .err { color:#ff8f8f; }
+  .notes { color:var(--mute); font-size:.85rem; }
+  footer { color:var(--mute); font-size:.85rem; margin-top:32px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Taste <span>Match</span></h1>
+    <p class="sub">Describe one piece from your catalog, an art print or a song. Taste Match uses the Qloo taste graph to find the artists, places, brands and people whose taste already overlaps it, so you know exactly who to show it to.</p>
+  </header>
+
+  <section class="panel">
+    <div>Try an example:</div>
+    <div class="chips" id="examples"></div>
+    <form id="f">
+      <div class="row">
+        <div><label for="title">Title</label><input id="title" required maxlength="200"></div>
+        <div><label for="kind">Kind</label><select id="kind"><option value="artwork">Art print</option><option value="song">Song</option></select></div>
+        <div><label for="location">City (optional)</label><input id="location" placeholder="Los Angeles"></div>
+      </div>
+      <label for="description">Describe the work</label>
+      <textarea id="description" required maxlength="4000"></textarea>
+      <div class="row">
+        <div><label for="influences">Influences, comma separated (artists, films, brands)</label><input id="influences"></div>
+        <div><label for="keywords">Style keywords, comma separated</label><input id="keywords"></div>
+      </div>
+      <button class="go" id="go" type="submit">Find my audience</button>
+    </form>
+  </section>
+
+  <section id="out"></section>
+  <footer>Powered by the Qloo Taste AI API through qloo-mcp, an open-source MCP server. Results are taste-graph affinities, not personal data.</footer>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const split = (s) => s.split(",").map(x => x.trim()).filter(Boolean);
+let catalog = [];
+
+function fill(w) {
+  $("title").value = w.work_title; $("kind").value = w.work_kind; $("description").value = w.description;
+  $("influences").value = (w.influences || []).join(", "); $("keywords").value = (w.keywords || []).join(", ");
+  $("location").value = w.location || "";
+}
+
+fetch("/api/catalog").then(r => r.json()).then(list => {
+  catalog = list;
+  list.forEach((w, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = w.work_title;
+    b.onclick = () => fill(w);
+    $("examples").appendChild(b);
+  });
+  if (list.length) fill(list[0]);
+});
+
+function listBlock(title, items) {
+  if (!items || !items.length) return "";
+  return `<div class="panel"><h3>${esc(title)}</h3><ol>${items.map(i =>
+    `<li>${esc(i.name)}${i.address ? `<div class="aff">${esc(i.address)}</div>` : ""}${i.affinity != null ? ` <span class="aff">affinity ${Number(i.affinity).toFixed(2)}</span>` : ""}</li>`).join("")}</ol></div>`;
+}
+
+function audienceBlock(a) {
+  if (!a || !a.age_affinity || !Object.keys(a.age_affinity).length) return "";
+  const vals = Object.values(a.age_affinity); const max = Math.max(...vals.map(Math.abs), 0.01);
+  const rows = Object.entries(a.age_affinity).map(([k, v]) =>
+    `<div class="agerow"><span>${esc(k.replace(/_/g, " "))}</span><div class="bar"><i style="width:${Math.max(0, v) / max * 100}%"></i></div><span class="aff">${v.toFixed(2)}</span></div>`).join("");
+  return `<div class="panel"><h3>Who: age affinity</h3>${rows}<p class="aff">Gender lean: ${esc(a.gender_lean || "none")}</p></div>`;
+}
+
+function render(r) {
+  const seeds = [...r.seeds.entities.map(e => e.name || e.query), ...r.seeds.tags.map(t => t.name || t.query)];
+  let html = `<div class="panel"><h3>Your pitch</h3><p class="pitch">${esc(r.pitch)}</p>
+    <p class="aff">Taste seeds resolved in Qloo: ${esc(seeds.join(", ") || "none")} (planner: ${esc(r.planner)})</p></div>`;
+  html += `<div class="grid">${audienceBlock(r.audience)}`;
+  if (r.taste_tags && r.taste_tags.length)
+    html += `<div class="panel"><h3>Their taste in words</h3><div class="tags">${r.taste_tags.map(t => `<span>${esc(t.name)}</span>`).join("")}</div></div>`;
+  html += listBlock("Artists they love", r.matches.artists) + listBlock("Places to find them", r.matches.places) +
+          listBlock("Brands they buy", r.matches.brands) + listBlock("Books they read", r.matches.books) +
+          listBlock("Films they watch", r.matches.movies) + `</div>`;
+  if (r.notes && r.notes.length) html += `<p class="notes">${r.notes.map(esc).join("<br>")}</p>`;
+  $("out").innerHTML = html;
+}
+
+$("f").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  $("go").disabled = true; $("go").textContent = "Reading the taste graph...";
+  $("out").innerHTML = "";
+  try {
+    const body = { work_title: $("title").value, work_kind: $("kind").value, description: $("description").value,
+      influences: split($("influences").value), keywords: split($("keywords").value), location: $("location").value || null };
+    const res = await fetch("/api/match", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || data.error);
+    render(data);
+  } catch (err) {
+    $("out").innerHTML = `<div class="panel err">${esc(err.message)}</div>`;
+  } finally {
+    $("go").disabled = false; $("go").textContent = "Find my audience";
+  }
+});
+</script>
+</body>
+</html>
