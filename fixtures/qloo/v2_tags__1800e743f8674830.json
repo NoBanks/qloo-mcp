@@ -1,0 +1,22 @@
+{
+  "endpoint": "/v2/tags",
+  "params": {
+    "filter.query": "retro futurism",
+    "page": "1",
+    "take": "1"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "id": "urn:tag:keyword:media:retro_futurism",
+          "name": "Retro Futurism",
+          "type": "urn:tag:keyword:media"
+        }
+      ]
+    }
+  }
+}

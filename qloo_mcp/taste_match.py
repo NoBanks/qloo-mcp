@@ -170,6 +170,20 @@ async def _safe(coro, notes: list[str], label: str) -> Any:
     return None
 
 
+def _apply_demo(result: dict, notes: list[str], payloads: list[Any]) -> None:
+    """Carry the demo flag from any cached Qloo payload up to the match result."""
+    kinds = {
+        (p.get("demo_info") or {}).get("data", "sample")
+        for p in payloads
+        if isinstance(p, dict) and p.get("demo")
+    }
+    if not kinds:
+        return
+    result["demo"] = True
+    result["demo_data"] = kinds.pop() if len(kinds) == 1 else "mixed"
+    notes.append("DEMO MODE: live Qloo data was unavailable, so cached results are shown.")
+
+
 def _search_results(payload: Any) -> list[dict]:
     if not isinstance(payload, dict):
         return []
@@ -290,6 +304,7 @@ async def run_taste_match(client: QlooClient, inp: TasteMatchInput) -> dict:
         if payload is not None:
             notes.append(f"no Qloo tag found for '{kw}'")
 
+    seed_payloads = [*entity_payloads, *tag_payloads]
     entity_ids = [e["entity_id"] for e in seed_entities]
     tag_ids = [t["tag_id"] for t in seed_tags]
 
@@ -306,6 +321,7 @@ async def run_taste_match(client: QlooClient, inp: TasteMatchInput) -> dict:
     if not entity_ids and not tag_ids:
         notes.append("no seeds resolved in Qloo; add influences (artists, films, brands) the work is close to")
         result["pitch"] = "Not enough taste signal yet. Add two or three influences the work sits next to."
+        _apply_demo(result, notes, seed_payloads)
         return result
 
     insight_calls = []
@@ -355,4 +371,5 @@ async def run_taste_match(client: QlooClient, inp: TasteMatchInput) -> dict:
     result["taste_tags"] = tags[:12]
 
     result["pitch"] = build_pitch(inp, result["matches"], result["audience"], result["taste_tags"])
+    _apply_demo(result, notes, [*seed_payloads, *insight_payloads, demo_payload, taste_payload])
     return result

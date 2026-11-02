@@ -1,0 +1,124 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.type": "urn:entity:brand",
+    "page": "1",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism",
+    "signal.location.query": "los angeles",
+    "take": "11"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "Criterion Collection",
+          "entity_id": "SAMPLE_B_CRITERION",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.7,
+          "properties": {},
+          "query": {
+            "affinity": 0.9
+          }
+        },
+        {
+          "name": "Teenage Engineering",
+          "entity_id": "SAMPLE_B_TE",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.6,
+          "properties": {},
+          "query": {
+            "affinity": 0.85
+          }
+        },
+        {
+          "name": "A24",
+          "entity_id": "SAMPLE_B_A24",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.8,
+          "properties": {},
+          "query": {
+            "affinity": 0.83
+          }
+        },
+        {
+          "name": "Tesla",
+          "entity_id": "SAMPLE_B_TESLA",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.97,
+          "properties": {},
+          "query": {
+            "affinity": 0.74
+          }
+        },
+        {
+          "name": "Kodak",
+          "entity_id": "SAMPLE_B_KODAK",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.9,
+          "properties": {},
+          "query": {
+            "affinity": 0.7
+          }
+        },
+        {
+          "name": "Moleskine",
+          "entity_id": "SAMPLE_B_MOLESKINE",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.7,
+          "properties": {},
+          "query": {
+            "affinity": 0.66
+          }
+        },
+        {
+          "name": "Wacom",
+          "entity_id": "SAMPLE_B_WACOM",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.6,
+          "properties": {},
+          "query": {
+            "affinity": 0.62
+          }
+        },
+        {
+          "name": "Casio",
+          "entity_id": "SAMPLE_B_CASIO",
+          "types": [
+            "urn:entity:brand"
+          ],
+          "subtype": "urn:entity:brand",
+          "popularity": 0.85,
+          "properties": {},
+          "query": {
+            "affinity": 0.58
+          }
+        }
+      ]
+    }
+  }
+}

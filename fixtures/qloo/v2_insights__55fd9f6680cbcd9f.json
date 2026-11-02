@@ -1,0 +1,176 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.type": "urn:entity:artist",
+    "page": "1",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism",
+    "signal.location.query": "los angeles",
+    "take": "11"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "Vangelis",
+          "entity_id": "SAMPLE_A_VANGELIS",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.88,
+          "properties": {},
+          "query": {
+            "affinity": 0.91
+          }
+        },
+        {
+          "name": "Tycho",
+          "entity_id": "SAMPLE_A_TYCHO",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.71,
+          "properties": {},
+          "query": {
+            "affinity": 0.88
+          }
+        },
+        {
+          "name": "Boards of Canada",
+          "entity_id": "SAMPLE_A_BOC",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.74,
+          "properties": {},
+          "query": {
+            "affinity": 0.86
+          }
+        },
+        {
+          "name": "M83",
+          "entity_id": "SAMPLE_A_M83",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.82,
+          "properties": {},
+          "query": {
+            "affinity": 0.84
+          }
+        },
+        {
+          "name": "Daft Punk",
+          "entity_id": "SAMPLE_A_DAFT",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.95,
+          "properties": {},
+          "query": {
+            "affinity": 0.8
+          }
+        },
+        {
+          "name": "Jean-Michel Jarre",
+          "entity_id": "SAMPLE_A_JARRE",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.73,
+          "properties": {},
+          "query": {
+            "affinity": 0.78
+          }
+        },
+        {
+          "name": "Brian Eno",
+          "entity_id": "SAMPLE_A_ENO",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.85,
+          "properties": {},
+          "query": {
+            "affinity": 0.76
+          }
+        },
+        {
+          "name": "Ennio Morricone",
+          "entity_id": "SAMPLE_A_MORRICONE",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.9,
+          "properties": {},
+          "query": {
+            "affinity": 0.7
+          }
+        },
+        {
+          "name": "Mild High Club",
+          "entity_id": "SAMPLE_A_MHC",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.4,
+          "properties": {},
+          "query": {
+            "affinity": 0.66
+          }
+        },
+        {
+          "name": "Kavinsky",
+          "entity_id": "SAMPLE_A_KAVINSKY",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.62,
+          "properties": {},
+          "query": {
+            "affinity": 0.64
+          }
+        },
+        {
+          "name": "Com Truise",
+          "entity_id": "SAMPLE_A_COMTRUISE",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.45,
+          "properties": {},
+          "query": {
+            "affinity": 0.6
+          }
+        },
+        {
+          "name": "Carpenter Brut",
+          "entity_id": "SAMPLE_A_CARPENTER",
+          "types": [
+            "urn:entity:artist"
+          ],
+          "subtype": "urn:entity:artist",
+          "popularity": 0.5,
+          "properties": {},
+          "query": {
+            "affinity": 0.58
+          }
+        }
+      ]
+    }
+  }
+}

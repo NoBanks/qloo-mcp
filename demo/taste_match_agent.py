@@ -36,6 +36,8 @@ def _split(v: str | None) -> list[str]:
 def render(result: dict) -> str:
     w = result["work"]
     lines = [f"=== {w['title']} ({w['kind']}) ===", f"planner: {result.get('planner')}"]
+    if result.get("demo"):
+        lines.append(f"DEMO MODE ({result.get('demo_data')} data, not live Qloo)")
     seeds = [e.get("name") or e.get("query") for e in result["seeds"]["entities"]]
     seeds += [t.get("name") or t.get("query") for t in result["seeds"]["tags"]]
     lines.append("seeds resolved in Qloo: " + (", ".join(s for s in seeds if s) or "none"))

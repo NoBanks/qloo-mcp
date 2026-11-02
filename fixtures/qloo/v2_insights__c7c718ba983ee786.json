@@ -1,0 +1,124 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.type": "urn:entity:book",
+    "page": "1",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism",
+    "signal.location.query": "los angeles",
+    "take": "11"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "Dune",
+          "entity_id": "SAMPLE_K_DUNE",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.96,
+          "properties": {},
+          "query": {
+            "affinity": 0.93
+          }
+        },
+        {
+          "name": "Neuromancer",
+          "entity_id": "SAMPLE_K_NEURO",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.8,
+          "properties": {},
+          "query": {
+            "affinity": 0.9
+          }
+        },
+        {
+          "name": "Solaris",
+          "entity_id": "SAMPLE_K_SOLARIS",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.7,
+          "properties": {},
+          "query": {
+            "affinity": 0.84
+          }
+        },
+        {
+          "name": "The Left Hand of Darkness",
+          "entity_id": "SAMPLE_K_LHOD",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.7,
+          "properties": {},
+          "query": {
+            "affinity": 0.8
+          }
+        },
+        {
+          "name": "Hyperion",
+          "entity_id": "SAMPLE_K_HYPERION",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.72,
+          "properties": {},
+          "query": {
+            "affinity": 0.78
+          }
+        },
+        {
+          "name": "Snow Crash",
+          "entity_id": "SAMPLE_K_SNOW",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.75,
+          "properties": {},
+          "query": {
+            "affinity": 0.76
+          }
+        },
+        {
+          "name": "The Incal",
+          "entity_id": "SAMPLE_K_INCAL",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.4,
+          "properties": {},
+          "query": {
+            "affinity": 0.74
+          }
+        },
+        {
+          "name": "Roadside Picnic",
+          "entity_id": "SAMPLE_K_PICNIC",
+          "types": [
+            "urn:entity:book"
+          ],
+          "subtype": "urn:entity:book",
+          "popularity": 0.55,
+          "properties": {},
+          "query": {
+            "affinity": 0.7
+          }
+        }
+      ]
+    }
+  }
+}

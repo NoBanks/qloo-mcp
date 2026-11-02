@@ -1,0 +1,28 @@
+{
+  "endpoint": "/search",
+  "params": {
+    "page": "1",
+    "query": "moebius",
+    "take": "1",
+    "types": "urn:entity:artist,urn:entity:book,urn:entity:brand,urn:entity:movie,urn:entity:person,urn:entity:place"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": [
+      {
+        "name": "Moebius",
+        "entity_id": "SAMPLE_E_MOEBIUS",
+        "types": [
+          "urn:entity:person"
+        ],
+        "subtype": "urn:entity:person",
+        "popularity": 0.78,
+        "properties": {
+          "short_description": "French comics artist and illustrator (Jean Giraud)."
+        }
+      }
+    ]
+  }
+}
