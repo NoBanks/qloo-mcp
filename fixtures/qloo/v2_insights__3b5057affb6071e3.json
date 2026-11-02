@@ -1,0 +1,124 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.type": "urn:entity:movie",
+    "page": "1",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism",
+    "signal.location.query": "los angeles",
+    "take": "11"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "Blade Runner 2049",
+          "entity_id": "SAMPLE_M_BR2049",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.9,
+          "properties": {},
+          "query": {
+            "affinity": 0.92
+          }
+        },
+        {
+          "name": "Arrival",
+          "entity_id": "SAMPLE_M_ARRIVAL",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.88,
+          "properties": {},
+          "query": {
+            "affinity": 0.89
+          }
+        },
+        {
+          "name": "Ex Machina",
+          "entity_id": "SAMPLE_M_EXMACH",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.85,
+          "properties": {},
+          "query": {
+            "affinity": 0.85
+          }
+        },
+        {
+          "name": "Moon",
+          "entity_id": "SAMPLE_M_MOON",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.7,
+          "properties": {},
+          "query": {
+            "affinity": 0.82
+          }
+        },
+        {
+          "name": "Annihilation",
+          "entity_id": "SAMPLE_M_ANNIH",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.78,
+          "properties": {},
+          "query": {
+            "affinity": 0.8
+          }
+        },
+        {
+          "name": "Dune",
+          "entity_id": "SAMPLE_M_DUNE",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.93,
+          "properties": {},
+          "query": {
+            "affinity": 0.78
+          }
+        },
+        {
+          "name": "Fantastic Planet",
+          "entity_id": "SAMPLE_M_FPLANET",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.45,
+          "properties": {},
+          "query": {
+            "affinity": 0.76
+          }
+        },
+        {
+          "name": "Solaris",
+          "entity_id": "SAMPLE_M_SOLARIS",
+          "types": [
+            "urn:entity:movie"
+          ],
+          "subtype": "urn:entity:movie",
+          "popularity": 0.6,
+          "properties": {},
+          "query": {
+            "affinity": 0.7
+          }
+        }
+      ]
+    }
+  }
+}

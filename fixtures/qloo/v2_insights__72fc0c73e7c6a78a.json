@@ -1,0 +1,68 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.type": "urn:demographics",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "demographics": [
+        {
+          "entity_id": "SAMPLE_E_INTERSTELLAR",
+          "query": {
+            "age": {
+              "24_and_younger": 0.12,
+              "25_to_29": 0.31,
+              "30_to_34": 0.27,
+              "35_to_44": 0.16,
+              "45_to_54": -0.05,
+              "55_and_older": -0.22
+            },
+            "gender": {
+              "male": 0.18,
+              "female": -0.14
+            }
+          }
+        },
+        {
+          "entity_id": "SAMPLE_E_MOEBIUS",
+          "query": {
+            "age": {
+              "24_and_younger": 0.16,
+              "25_to_29": 0.35,
+              "30_to_34": 0.31,
+              "35_to_44": 0.2,
+              "45_to_54": -0.01,
+              "55_and_older": -0.18
+            },
+            "gender": {
+              "male": 0.22,
+              "female": -0.18
+            }
+          }
+        },
+        {
+          "entity_id": "SAMPLE_E_ZIMMER",
+          "query": {
+            "age": {
+              "24_and_younger": 0.09,
+              "25_to_29": 0.28,
+              "30_to_34": 0.24,
+              "35_to_44": 0.13,
+              "45_to_54": -0.08,
+              "55_and_older": -0.25
+            },
+            "gender": {
+              "male": 0.15,
+              "female": -0.11
+            }
+          }
+        }
+      ]
+    }
+  }
+}

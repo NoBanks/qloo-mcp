@@ -1,0 +1,33 @@
+{
+  "endpoint": "/v2/audiences",
+  "params": {
+    "filter.audience.types": "urn:audience:hobbies_and_interests",
+    "page": "1",
+    "take": "20"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "audiences": [
+        {
+          "id": "urn:audience:hobbies_and_interests:film_buffs",
+          "name": "Film Buffs"
+        },
+        {
+          "id": "urn:audience:hobbies_and_interests:gamers",
+          "name": "Gamers"
+        },
+        {
+          "id": "urn:audience:hobbies_and_interests:art_lovers",
+          "name": "Art Lovers"
+        },
+        {
+          "id": "urn:audience:hobbies_and_interests:music_lovers",
+          "name": "Music Lovers"
+        }
+      ]
+    }
+  }
+}

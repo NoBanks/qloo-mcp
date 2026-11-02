@@ -3,6 +3,7 @@ WORKDIR /app
 COPY pyproject.toml README.md LICENSE ./
 COPY qloo_mcp ./qloo_mcp
 COPY demo ./demo
+COPY fixtures ./fixtures
 RUN pip install --no-cache-dir ".[demo]"
 ENV PORT=8080
 EXPOSE 8080

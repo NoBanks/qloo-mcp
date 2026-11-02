@@ -1,0 +1,140 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.location.query": "los angeles",
+    "filter.type": "urn:entity:place",
+    "page": "1",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism",
+    "take": "11"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "Griffith Observatory",
+          "entity_id": "SAMPLE_P_GRIFFITH",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.92,
+          "properties": {
+            "address": "2800 E Observatory Rd, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.9
+          }
+        },
+        {
+          "name": "Los Angeles County Museum of Art",
+          "entity_id": "SAMPLE_P_LACMA",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.9,
+          "properties": {
+            "address": "5905 Wilshire Blvd, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.86
+          }
+        },
+        {
+          "name": "The Broad",
+          "entity_id": "SAMPLE_P_BROAD",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.88,
+          "properties": {
+            "address": "221 S Grand Ave, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.83
+          }
+        },
+        {
+          "name": "Meow Wolf Grapevine",
+          "entity_id": "SAMPLE_P_MEOW",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.5,
+          "properties": {
+            "address": "Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.7
+          }
+        },
+        {
+          "name": "Counterpoint Records & Books",
+          "entity_id": "SAMPLE_P_COUNTER",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.42,
+          "properties": {
+            "address": "5911 Franklin Ave, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.69
+          }
+        },
+        {
+          "name": "Cinefamily at the Silent Movie Theatre",
+          "entity_id": "SAMPLE_P_SILENT",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.4,
+          "properties": {
+            "address": "611 N Fairfax Ave, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.66
+          }
+        },
+        {
+          "name": "Arclight Hollywood",
+          "entity_id": "SAMPLE_P_ARCLIGHT",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.7,
+          "properties": {
+            "address": "6360 W Sunset Blvd, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.64
+          }
+        },
+        {
+          "name": "Skylight Books",
+          "entity_id": "SAMPLE_P_SKYLIGHT",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.45,
+          "properties": {
+            "address": "1818 N Vermont Ave, Los Angeles, CA"
+          },
+          "query": {
+            "affinity": 0.6
+          }
+        }
+      ]
+    }
+  }
+}

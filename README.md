@@ -110,6 +110,17 @@ python3.11 demo/taste_match_agent.py --title "Neon Koi" --kind artwork \
 
 Add `--json` for the raw result.
 
+## Demo mode
+
+Qloo API access ends for most hackathon entrants after judging, so the app can replay saved Qloo responses instead of calling the API. Two env flags:
+
+| Env var | Effect |
+|---|---|
+| `QLOO_RECORD=1` | Save every successful live Qloo response to `fixtures/qloo/`. Off by default, so normal runs never write. Use it once, with a working key, to capture real data. |
+| `QLOO_DEMO=1` | Never call Qloo and no `QLOO_API_KEY` needed. Serve saved responses only. |
+
+Without either flag, a live call that fails with 401, 403, 429 or a network error also falls back to the saved responses. Replayed results carry `"demo": true` and the web app shows a small DEMO MODE badge. The committed fixtures are hand-written samples until real ones are recorded. How keys are built, the nearest-match fallback rule and the recording steps are in `fixtures/README.md`.
+
 ## Tests
 
 ```bash

@@ -7,11 +7,13 @@ logged, echoed, or included in any error message.
 
 from __future__ import annotations
 
+import logging
 import os
 from typing import Any
 
 import httpx
 
+from . import demo_cache
 from .schemas import (
     GetDemographicsInput,
     GetInsightsInput,
@@ -25,6 +27,8 @@ QLOO_API_URL_DEFAULT = "https://hackathon.api.qloo.com"
 QLOO_API_KEY_ENV = "QLOO_API_KEY"
 QLOO_API_URL_ENV = "QLOO_API_URL"
 QLOO_TIMEOUT_ENV = "QLOO_TIMEOUT_SECONDS"
+
+logger = logging.getLogger("qloo_mcp.client")
 
 DEMOGRAPHICS_TYPE = "urn:demographics"
 TAG_TYPE = "urn:tag"
@@ -77,7 +81,7 @@ class QlooClient:
     ) -> None:
         resolved_key = api_key if api_key is not None else os.environ.get(QLOO_API_KEY_ENV, "")
         resolved_key = (resolved_key or "").strip()
-        if not resolved_key:
+        if not resolved_key and not demo_cache.demo_enabled():
             raise ValueError("QLOO_API_KEY environment variable is required")
         self._api_key = resolved_key
 
@@ -109,6 +113,31 @@ class QlooClient:
         }
 
     async def _get(self, path: str, params: dict[str, Any]) -> dict[str, Any]:
+        """Live call with record/replay. See qloo_mcp/demo_cache.py."""
+        query = _clean_params(params)
+        if demo_cache.demo_enabled():
+            cached = demo_cache.replay(path, query, "QLOO_DEMO=1")
+            if cached is None:
+                raise QlooAPIError(f"Demo mode: no cached Qloo response for {path}")
+            return cached
+        try:
+            payload = await self._live_get(path, params)
+        except QlooAPIError as exc:
+            network = isinstance(exc.__cause__, httpx.HTTPError)
+            if network or exc.status_code in demo_cache.FALLBACK_STATUSES:
+                reason = "network_error" if network else f"http_{exc.status_code}"
+                cached = demo_cache.replay(path, query, reason)
+                if cached is not None:
+                    return cached
+            raise
+        if demo_cache.record_enabled():
+            try:
+                demo_cache.record(path, query, payload)
+            except OSError as exc:
+                logger.warning("Could not record Qloo response for %s: %s", path, exc)
+        return payload
+
+    async def _live_get(self, path: str, params: dict[str, Any]) -> dict[str, Any]:
         url = f"{self._base_url}{path}"
         query = _clean_params(params)
         try:

@@ -1,0 +1,109 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.location.query": "san francisco",
+    "filter.type": "urn:entity:place",
+    "page": "1",
+    "signal.interests.entities": "sample_e_rothko",
+    "take": "9"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "name": "San Francisco Museum of Modern Art",
+          "entity_id": "SAMPLE_P_SFMOMA",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.9,
+          "properties": {
+            "address": "151 3rd St, San Francisco, CA"
+          },
+          "query": {
+            "affinity": 0.9
+          }
+        },
+        {
+          "name": "de Young Museum",
+          "entity_id": "SAMPLE_P_DEYOUNG",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.8,
+          "properties": {
+            "address": "50 Hagiwara Tea Garden Dr, San Francisco, CA"
+          },
+          "query": {
+            "affinity": 0.84
+          }
+        },
+        {
+          "name": "Exploratorium",
+          "entity_id": "SAMPLE_P_EXPLO",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.8,
+          "properties": {
+            "address": "Pier 15, San Francisco, CA"
+          },
+          "query": {
+            "affinity": 0.8
+          }
+        },
+        {
+          "name": "City Lights Booksellers",
+          "entity_id": "SAMPLE_P_CITYLIGHTS",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.75,
+          "properties": {
+            "address": "261 Columbus Ave, San Francisco, CA"
+          },
+          "query": {
+            "affinity": 0.78
+          }
+        },
+        {
+          "name": "Yerba Buena Center for the Arts",
+          "entity_id": "SAMPLE_P_YBCA",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.5,
+          "properties": {
+            "address": "701 Mission St, San Francisco, CA"
+          },
+          "query": {
+            "affinity": 0.72
+          }
+        },
+        {
+          "name": "Fraenkel Gallery",
+          "entity_id": "SAMPLE_P_FRAENKEL",
+          "types": [
+            "urn:entity:place"
+          ],
+          "subtype": "urn:entity:place",
+          "popularity": 0.35,
+          "properties": {
+            "address": "1 Jackson St, San Francisco, CA"
+          },
+          "query": {
+            "affinity": 0.66
+          }
+        }
+      ]
+    }
+  }
+}

@@ -33,6 +33,7 @@
   .bar i { display:block; height:100%; background:var(--accent2); }
   .agerow { display:grid; grid-template-columns:110px 1fr 56px; gap:8px; align-items:center; font-size:.9rem; margin:4px 0; }
   .tags span { display:inline-block; background:#22263a; border-radius:999px; padding:3px 10px; margin:3px; font-size:.85rem; }
+  .demo-badge { margin-left:8px; padding:1px 8px; border:1px solid var(--accent); border-radius:999px; color:var(--accent); font-size:.7rem; letter-spacing:.08em; vertical-align:middle; cursor:help; }
   .err { color:#ff8f8f; }
   .notes { color:var(--mute); font-size:.85rem; }
   footer { color:var(--mute); font-size:.85rem; margin-top:32px; }
@@ -106,7 +107,8 @@ function audienceBlock(a) {
 
 function render(r) {
   const seeds = [...r.seeds.entities.map(e => e.name || e.query), ...r.seeds.tags.map(t => t.name || t.query)];
-  let html = `<div class="panel"><h3>Your pitch</h3><p class="pitch">${esc(r.pitch)}</p>
+  const badge = r.demo ? ` <span class="demo-badge" title="Live Qloo data was unavailable. These are cached ${esc(r.demo_data || "sample")} results.">DEMO MODE</span>` : "";
+  let html = `<div class="panel"><h3>Your pitch${badge}</h3><p class="pitch">${esc(r.pitch)}</p>
     <p class="aff">Taste seeds resolved in Qloo: ${esc(seeds.join(", ") || "none")} (planner: ${esc(r.planner)})</p></div>`;
   html += `<div class="grid">${audienceBlock(r.audience)}`;
   if (r.taste_tags && r.taste_tags.length)

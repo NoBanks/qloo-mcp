@@ -1,0 +1,75 @@
+{
+  "endpoint": "/v2/insights",
+  "params": {
+    "filter.type": "urn:tag",
+    "signal.interests.entities": "sample_e_interstellar,sample_e_moebius,sample_e_zimmer",
+    "signal.interests.tags": "urn:tag:genre:media:science_fiction,urn:tag:genre:media:surrealism,urn:tag:keyword:media:retro_futurism",
+    "signal.location.query": "los angeles",
+    "take": "15"
+  },
+  "source": "sample",
+  "note": "SAMPLE data written by hand to match the Qloo response shape. Not real Qloo output. IDs start with SAMPLE_.",
+  "response": {
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "tag_id": "urn:tag:genre:media:space_opera",
+          "name": "Space Opera",
+          "query": {
+            "affinity": 0.88
+          }
+        },
+        {
+          "tag_id": "urn:tag:keyword:media:dystopian",
+          "name": "Dystopian",
+          "query": {
+            "affinity": 0.84
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:music:ambient",
+          "name": "Ambient",
+          "query": {
+            "affinity": 0.8
+          }
+        },
+        {
+          "tag_id": "urn:tag:keyword:media:cyberpunk",
+          "name": "Cyberpunk",
+          "query": {
+            "affinity": 0.78
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:media:neo_noir",
+          "name": "Neo-Noir",
+          "query": {
+            "affinity": 0.72
+          }
+        },
+        {
+          "tag_id": "urn:tag:keyword:media:atmospheric",
+          "name": "Atmospheric",
+          "query": {
+            "affinity": 0.7
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:music:synthwave",
+          "name": "Synthwave",
+          "query": {
+            "affinity": 0.66
+          }
+        },
+        {
+          "tag_id": "urn:tag:keyword:media:visionary",
+          "name": "Visionary",
+          "query": {
+            "affinity": 0.6
+          }
+        }
+      ]
+    }
+  }
+}
